@@ -24,8 +24,11 @@ global	entry_loader
 global	loader_size
 global	infos_size
 
-loader_size	dq	end - entry_loader
-infos_size	dq	end - info_start
+;loader_size	dq	end - entry_loader
+;infos_size	dq	end - info_start
+
+loader_size=end - entry_loader
+infos_size=end - info_start
 
 entry_loader:
 	;;pushfq
@@ -78,10 +81,17 @@ entry_loader:
 	;;popfq
 	;;jmp	0xFFFFFFFF
 
-info_start: dd 0x99999999
-;dq 字节
-info_key:	dq	0x9999999999999990
-info_addr:	dq	0xAAAAAAAAAAAAAABB
-info_size:	dq	0xBBBBBBBBBBBBBBCC
+;info_start: dd 0x99999999
+info_start = 0x99999999
 
-end: dd 0x99999999
+;dq 字节
+;info_key:	dq	0x9999999999999990
+;info_addr:	dq	0xAAAAAAAAAAAAAABB
+;info_size:	dq	0xBBBBBBBBBBBBBBCC
+
+info_key = 0x9999999999999990
+info_addr = 0xAAAAAAAAAAAAAABB
+info_size = 0xBBBBBBBBBBBBBBCC
+
+;end: dd 0x99999999
+end = 0x99999999
