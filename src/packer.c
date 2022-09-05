@@ -5,17 +5,18 @@ void *map_file(char *filename, size_t *size_ptr) {
     void *data;
     off_t size;
     int32_t fd;
-
+    // read only
     if ((fd = open(filename, O_RDONLY)) < 0) {
         perror("open");
         return ((void *) 0);
     }
-
+    // file size
     if ((size = lseek(fd, 0, SEEK_END)) < 0) {
         perror("lseek");
         return ((void *) 0);
     }
-
+    // read write
+    // MAP_PRIVATE
     if ((data = mmap((void *) 0, (size_t) size, PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, 0)) == MAP_FAILED) {
         perror("mmap");
         return ((void *) 0);

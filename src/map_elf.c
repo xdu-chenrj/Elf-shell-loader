@@ -12,7 +12,7 @@ static int32_t map_elf_header(t_elf *elf, void *data, size_t size) {
     }
 
     memcpy(elf->elf_header, data, sizeof(Elf64_Ehdr));
-
+    // cmp
     if (strncmp((char *) elf->elf_header->e_ident, ELFMAG, SELFMAG)) {
         printf("Wrong file\n");
         return (-1);
@@ -63,7 +63,8 @@ static int32_t map_sections_header(t_elf *elf, void *data, size_t size) {
             return (-1);
         }
 
-        memcpy(&(elf->section_header[id]), (uint8_t *) data + elf->elf_header->e_shoff + id * sizeof(Elf64_Shdr),
+        memcpy(&(elf->section_header[id]),
+               (uint8_t *) data + elf->elf_header->e_shoff + id * sizeof(Elf64_Shdr),
                sizeof(Elf64_Shdr));
 
     }

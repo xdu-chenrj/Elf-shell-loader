@@ -9,7 +9,8 @@ extern uint64_t entry_addr, entry_size, key;
 
 static char *get_section_name(t_elf *elf, int id) {
     uint16_t shname;
-
+    // string table name
+    // section
     shname = elf->elf_header->e_shstrndx;
     return ((char *) (elf->section_data[shname] + elf->section_header[id].sh_name));
 }
@@ -48,7 +49,7 @@ int32_t cypher_code(t_elf *elf) {
 
     size = elf->section_header[id].sh_size;
     data = elf->section_data[id];
-
+    //
     entry_addr = elf->section_header[id].sh_addr;
     entry_size = size;
     key = get_random_key();

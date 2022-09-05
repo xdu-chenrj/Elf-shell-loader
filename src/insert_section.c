@@ -51,7 +51,7 @@ static int32_t create_section(t_elf *elf, uint16_t last_section, uint16_t last_p
     }
 
     memcpy(loader, (void *) entry_loader, loader_size);
-
+    //
     memcpy(loader + loader_size - 24, &key, sizeof(uint64_t));
     memcpy(loader + loader_size - 16, &entry_addr, sizeof(uint64_t));
     memcpy(loader + loader_size - 8, &entry_size, sizeof(uint64_t));
@@ -70,15 +70,18 @@ static int32_t create_section(t_elf *elf, uint16_t last_section, uint16_t last_p
 static void change_entry(t_elf *elf, uint16_t last_section) {
     Elf64_Addr last_entry;
     int32_t jump;
-
+    // pro header load
     last_entry = elf->elf_header->e_entry;
     elf->elf_header->e_entry = elf->section_header[last_section].sh_addr;
+    //
     jump = last_entry - (elf->elf_header->e_entry + loader_size - infos_size);
+    //
     memcpy(elf->section_data[last_section] + loader_size - (infos_size + 4), &jump, 4);
 }
 
 int32_t insert_section(t_elf *elf) {
     uint16_t last_section = (uint16_t) -1;
+    //
     uint16_t last_ptload = (uint16_t) -1;
 
     for (uint16_t id = 0; id < elf->elf_header->e_phnum; id += 1) {
@@ -91,6 +94,7 @@ int32_t insert_section(t_elf *elf) {
         return (-1);
     }
 
+    //
     for (uint16_t id = 0; id < elf->elf_header->e_shnum; id += 1) {
         Elf64_Phdr *phdr = elf->prog_header + last_ptload;
         Elf64_Shdr *shdr = elf->section_header + id;
@@ -107,7 +111,7 @@ int32_t insert_section(t_elf *elf) {
     create_section(elf, last_section, last_ptload);
 
     last_section += 1;
-
+    //
     uint64_t size = elf->prog_header[last_ptload].p_memsz + loader_size;
     elf->prog_header[last_ptload].p_memsz = size;
     elf->prog_header[last_ptload].p_filesz = size;
