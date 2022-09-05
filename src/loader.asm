@@ -13,7 +13,8 @@
 ;  %endrep
 ;%endmacro
 
-section .text
+;section .text
+.text
 
 ;global	entry_loader:function
 ;global	loader_size:data
