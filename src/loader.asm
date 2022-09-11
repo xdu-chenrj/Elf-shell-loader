@@ -27,8 +27,8 @@ global	infos_size
 ;loader_size	dq	end - entry_loader
 ;infos_size	dq	end - info_start
 
-loader_size
-infos_size
+;loader_size
+;infos_size
 
 entry_loader:
 	;;pushfq
@@ -82,16 +82,16 @@ entry_loader:
 	;;jmp	0xFFFFFFFF
 
 ;info_start: dd 0x99999999
-info_start
+;info_start
 
 ;dq 字节
 ;info_key:	dq	0x9999999999999990
 ;info_addr:	dq	0xAAAAAAAAAAAAAABB
 ;info_size:	dq	0xBBBBBBBBBBBBBBCC
 
-info_key
-info_addr
-info_size
+;info_key
+;info_addr
+;info_size
 
 ;end: dd 0x99999999
-end
+;end
