@@ -27,8 +27,8 @@ global	infos_size
 ;loader_size	dq	end - entry_loader
 ;infos_size	dq	end - info_start
 
-;loader_size
-;infos_size
+loader_size
+infos_size
 
 entry_loader:
 	;;pushfq
