@@ -15,9 +15,9 @@
 
 .section .text
 
-.lobal	_start
-.lobal	_loader_size
-.lobal	_infos_size
+.global	_start
+.global	_loader_size
+.global	_infos_size
 
 ;loader_size:
 ;    dq	end - entry_loader
