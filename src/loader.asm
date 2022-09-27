@@ -25,7 +25,7 @@ global	_infos_size
 ;    dq	end - info_start
 
 _loader_size:
-        .quad	end - entry_loader
+        .quad	0x8a
 _infos_size:
         .quad	end - info_start
 
