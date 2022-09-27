@@ -25,9 +25,9 @@ global	infos_size
 ;    dq	end - info_start
 
 loader_size:
-    .quad	end - entry_loader
+    quad	end - entry_loader
 infos_size:
-    .quad	end - info_start
+    quad	end - info_start
 
 entry_loader:
 	;pushfq
@@ -98,7 +98,7 @@ entry_loader:
 
 ;info_start: dd 0x99999999
 info_start:
-    .word 0x99999999
+    word 0x99999999
 
 
 ;dq 字a节
