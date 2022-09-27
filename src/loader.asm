@@ -13,19 +13,19 @@
 ;  %endrep
 ;%endmacro
 
-section .text
+.ection .text
 
-global	_entry_loader
-global	_loader_size
-global	_infos_size
+.lobal	_entry_loader
+.lobal	_loader_size
+.lobal	_infos_size
 
 ;loader_size:
 ;    dq	end - entry_loader
-;infos_size:
+;nfos_size:
 ;    dq	end - info_start
 
 _loader_size:
-        .quad	0x8a
+        .quad	end - entry_loader
 _infos_size:
         .quad	end - info_start
 
