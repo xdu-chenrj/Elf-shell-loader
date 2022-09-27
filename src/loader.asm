@@ -15,21 +15,21 @@
 
 section .text
 
-global	entry_loader
-global	loader_size
-global	infos_size
+global	_entry_loader
+global	_loader_size
+global	_infos_size
 
 ;loader_size:
 ;    dq	end - entry_loader
 ;infos_size:
 ;    dq	end - info_start
 
-loader_size:
+_loader_size:
         .quad	end - entry_loader
-infos_size:
+_infos_size:
         .quad	end - info_start
 
-entry_loader:
+_entry_loader:
 	;pushfq
 	;push   rax
 	;push   rdi
