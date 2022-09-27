@@ -55,10 +55,10 @@ int32_t cypher_code(t_elf *elf) {
     key = get_random_key();
     lkey = key;
 
-    for (offset = 0; offset < size; offset += 1) {
-        data[offset] ^= (uint8_t) lkey;
-        lkey = rotate_right(lkey);
-    }
+//    for (offset = 0; offset < size; offset += 1) {
+//        data[offset] ^= (uint8_t) lkey;
+//        lkey = rotate_right(lkey);
+//    }
 
     return (0);
 }
