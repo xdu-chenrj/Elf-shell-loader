@@ -13,7 +13,7 @@
 ;  %endrep
 ;%endmacro
 
-.ection .text
+.section .text
 
 .lobal	_start
 .lobal	_loader_size
