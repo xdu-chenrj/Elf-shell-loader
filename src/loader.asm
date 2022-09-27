@@ -15,7 +15,7 @@
 
 .ection .text
 
-.lobal	_entry_loader
+.lobal	_start
 .lobal	_loader_size
 .lobal	_infos_size
 
@@ -29,7 +29,7 @@ _loader_size:
 _infos_size:
         .quad	end - info_start
 
-_entry_loader:
+_start:
 	;pushfq
 	;push   rax
 	;push   rdi

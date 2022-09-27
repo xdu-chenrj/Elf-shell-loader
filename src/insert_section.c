@@ -4,7 +4,7 @@
 extern uint64_t loader_size;
 extern uint64_t infos_size;
 
-extern void entry_loader(void);
+extern void _start(void);
 
 static Elf64_Shdr new_section = {
         .sh_name = (uint32_t) 0,
@@ -50,7 +50,7 @@ static int32_t create_section(t_elf *elf, uint16_t last_section, uint16_t last_p
         return (-1);
     }
 
-    memcpy(loader, (void *) entry_loader, loader_size);
+    memcpy(loader, (void *) _start, loader_size);
     //
     memcpy(loader + loader_size - 24, &key, sizeof(uint64_t));
     memcpy(loader + loader_size - 16, &entry_addr, sizeof(uint64_t));
