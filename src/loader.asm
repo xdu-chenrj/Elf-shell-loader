@@ -1,31 +1,33 @@
 ;AT&T语法
-%macro pushx 1-*
- %rep %0
-   push %1
-   %rotate 1
- %endrep
-%endmacro
+;%macro pushx 1-*
+; %rep %0
+;   push %1
+;   %rotate 1
+; %endrep
+;%endmacro
 
-%macro popx 1-*
-  %rep %0
-    %rotate -1
-    pop %1
-  %endrep
-%endmacro
+;%macro popx 1-*
+;  %rep %0
+;    %rotate -1
+;    pop %1
+;  %endrep
+;%endmacro
 
-;section .text
-.text
+section .text
 
 global	entry_loader
 global	loader_size
 global	infos_size
 
+;loader_size:
+;    dq	end - entry_loader
+;infos_size:
+;    dq	end - info_start
 
 loader_size:
-    dq	end - entry_loader
+    .quad	end - entry_loader
 infos_size:
-    dq	end - info_start
-
+    .quad	end - info_start
 
 entry_loader:
 	;pushfq
@@ -62,7 +64,7 @@ entry_loader:
 	;printf
 
 ;	jmp	start_unpacking
-	jmp	0xFFFFFFFF
+	bl	0xFFFFFFFF
 
 ;msg	db	"[Unpacking...]", 10, 0
 ;msg_len	equ	$ - msg
@@ -94,15 +96,28 @@ entry_loader:
 	;popfq
 	;jmp	0xFFFFFFFF
 
-info_start: dd 0x99999999
+;info_start: dd 0x99999999
+info_start:
+    .word 0x99999999
+
 
 ;dq 字a节
+;info_key:
+;    dq	0x9999999999999990
+;info_addr:
+;    dq	0xAAAAAAAAAAAAAABB
+;info_size:
+;    dq	0xBBBBBBBBBBBBBBCC
+
 info_key:
-    dq	0x9999999999999990
+    .quad	0x9999999999999990
 info_addr:
-    dq	0xAAAAAAAAAAAAAABB
+    .quad	0xAAAAAAAAAAAAAABB
 info_size:
-    dq	0xBBBBBBBBBBBBBBCC
+    .quad	0xBBBBBBBBBBBBBBCC
+
+;end:
+;    dd 0x99999999
 
 end:
-    dd 0x99999999
+    .word 0x99999999
