@@ -16,17 +16,17 @@
 .section .text
 
 .global	_start
-.global	_loader_size
-.global	_infos_size
+.global	loader_size
+.global	infos_size
 
 ;loader_size:
 ;    dq	end - entry_loader
 ;nfos_size:
 ;    dq	end - info_start
 
-_loader_size:
+loader_size:
         .quad	end - entry_loader
-_infos_size:
+infos_size:
         .quad	end - info_start
 
 _start:
